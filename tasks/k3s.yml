@@ -35,7 +35,7 @@
     path: /usr/local/bin/k3s
   register: k3s_stat
 
-- name: Install K3S without Traefik if not installed
+- name: Install K3S if not installed or if 'k3s_reconfigure' is true
   shell: |
     curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="{{ k3s_install_options }}" sh -s -
   when: not k3s_stat.stat.exists or k3s_reconfigure
@@ -46,6 +46,17 @@
     state: started
     enabled: true
     daemon_reload: true
+
+- name: Replace server address in K3s kubeconfig with the instance ip
+  replace:
+    path: /etc/rancher/k3s/k3s.yaml
+    regexp: 'https://127.0.0.1:6443'
+    replace: "https://{{ k3s_kubeconfig_server }}:6443"
+
+- name: Copy kubeconfig file locally as "{{ k3s_kubeconfig_local_path }}"
+  ansible.builtin.fetch:
+    src: "/etc/rancher/k3s/k3s.yaml"
+    dest: "{{ k3s_kubeconfig_local_path }}"
 
 # - name: Install OpenVPN packages
 #   package:
