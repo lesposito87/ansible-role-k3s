@@ -40,6 +40,13 @@
     curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="{{ k3s_install_options }}" sh -s -
   when: not k3s_stat.stat.exists
 
+- name: Start & Enable k3s systemd service
+  systemd_service:
+    name: k3s
+    state: started
+    enabled: true
+    daemon_reload: true
+
 # - name: Install OpenVPN packages
 #   package:
 #     name: "{{ item_openvpn_pkgs }}"

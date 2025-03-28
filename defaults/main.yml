@@ -1,2 +1,2 @@
 ---
-k3s_install_options: "--disable traefik,servicelb"
+k3s_install_options: "--disable traefik,servicelb,metrics-server --https-listen-address 127.0.0.1"
