@@ -57,6 +57,7 @@
   ansible.builtin.fetch:
     src: "/etc/rancher/k3s/k3s.yaml"
     dest: "{{ k3s_kubeconfig_local_path }}"
+    flat: yes
 
 # - name: Install OpenVPN packages
 #   package:
