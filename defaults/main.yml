@@ -1,5 +1,5 @@
 ---
-k3s_install_options: "--disable traefik,servicelb,metrics-server"
+k3s_install_options: "--disable traefik,servicelb,metrics-server --node-label=role=core"
 k3s_reconfigure: false
 k3s_kubeconfig_local_path: "/tmp/k3s-kubeconfig"
 k3s_kubeconfig_server: "127.0.0.1"
