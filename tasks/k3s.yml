@@ -38,7 +38,7 @@
 - name: Install K3S without Traefik if not installed
   shell: |
     curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="{{ k3s_install_options }}" sh -s -
-  when: not k3s_stat.stat.exists
+  when: not k3s_stat.stat.exists or k3s_reconfigure
 
 - name: Start & Enable k3s systemd service
   systemd_service:
