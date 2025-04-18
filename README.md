@@ -43,20 +43,20 @@ Description: An Ansible Role that installs and configures a single node K3s clus
 
 | Name | Module | Has Conditions |
 | ---- | ------ | --------- |
-| Wait for connection... |  | False |
-| Including K3s setup tasks | include_tasks | False |
+| Wait for connection... | ansible.builtin.wait_for_connection | False |
+| Including K3s setup tasks | ansible.builtin.include_tasks | False |
 
 #### File: tasks/k3s.yml
 
 | Name | Module | Has Conditions |
 | ---- | ------ | --------- |
-| Check if SELinux is installed | find | False |
+| Check if SELinux is installed | ansible.builtin.find | False |
 | Configuring SELinux in permissive mode | ansible.posix.selinux | True |
-| Ensure Firewalld/Iptables service are stopped | service | False |
-| Check if K3S is already installed | stat | False |
-| Install K3S if not installed or if variable 'k3s_reconfigure' is set to 'true' | shell | True |
-| Start & Enable k3s systemd service | systemd_service | False |
-| Replace server address in K3s kubeconfig with the instance ip | replace | False |
+| Ensure Firewalld/Iptables service are stopped | ansible.builtin.service | False |
+| Check if K3S is already installed | ansible.builtin.stat | False |
+| Install K3S if not installed or if variable 'k3s_reconfigure' is set to 'true' | ansible.builtin.shell | True |
+| Start & Enable k3s systemd service | ansible.builtin.systemd_service | False |
+| Replace server address in K3s kubeconfig with the instance ip | ansible.builtin.replace | False |
 | Copy kubeconfig file locally as "{{ k3s_kubeconfig_local_path }}" | ansible.builtin.fetch | False |
 
 
