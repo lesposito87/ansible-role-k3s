@@ -1,0 +1,42 @@
+name: Auto-Update README with "docsible"
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: true  # Required to push back to repo
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install docsible
+        run: pip install docsible
+
+      - name: Run docsible to update README
+        run: docsible --role  .  --graph --no-backup --no-docsible
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@lesposito87.noreply.github.com"
+
+          if git diff --quiet README.md; then
+            echo "[INFO] No changes to README.md"
+          else
+            git add README.md
+            git commit -m "chore(doc): auto-update README with docsible"
+            git push
+          fi
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'README.md'
