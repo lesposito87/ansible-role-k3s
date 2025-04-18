@@ -1,5 +1,16 @@
 ---
+# title: K3s install options
+# required: True
 k3s_install_options: "--disable traefik,servicelb,metrics-server --node-label=role=core"
+
+# title: Force K3s reconfiguration
+# required: True
 k3s_reconfigure: false
+
+# title: Local path on your machine where the kubeconfig file for connecting to the K3s cluster will be copied
+# required: True
 k3s_kubeconfig_local_path: "/tmp/k3s-kubeconfig"
+
+# title: K3s IP Address; replace it with the IP Address of your K3s instance
+# required: True
 k3s_kubeconfig_server: "127.0.0.1"
