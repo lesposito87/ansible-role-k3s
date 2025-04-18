@@ -27,10 +27,10 @@ Description: An Ansible Role that installs and configures a single node K3s clus
 
 | Var          | Type         | Value       |Required    | Title       |
 |--------------|--------------|-------------|-------------|-------------|
-| [k3s_install_options](defaults/main.yml#L2)   | str   | `--disable traefik,servicelb,metrics-server --node-label=role=core` |    n/a  |  n/a |
-| [k3s_reconfigure](defaults/main.yml#L3)   | bool   | `False` |    n/a  |  n/a |
-| [k3s_kubeconfig_local_path](defaults/main.yml#L4)   | str   | `/tmp/k3s-kubeconfig` |    n/a  |  n/a |
-| [k3s_kubeconfig_server](defaults/main.yml#L5)   | str   | `127.0.0.1` |    n/a  |  n/a |
+| [k3s_install_options](defaults/main.yml#L4)   | str   | `--disable traefik,servicelb,metrics-server --node-label=role=core` |    True  |  K3s install options |
+| [k3s_reconfigure](defaults/main.yml#L8)   | bool   | `False` |    True  |  Force K3s reconfiguration |
+| [k3s_kubeconfig_local_path](defaults/main.yml#L12)   | str   | `/tmp/k3s-kubeconfig` |    True  |  Local path on your machine where the kubeconfig file for connecting to the K3s cluster will be copied |
+| [k3s_kubeconfig_server](defaults/main.yml#L16)   | str   | `127.0.0.1` |    True  |  K3s IP Address; replace it with the IP Address of your K3s instance |
 
 
 
