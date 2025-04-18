@@ -1,7 +1,7 @@
 ---
 - name: "Wait for connection..."
-  wait_for_connection:
+  ansible.builtin.wait_for_connection:
     timeout: 300
 
 - name: Including K3s setup tasks
-  include_tasks: "k3s.yml"
+  ansible.builtin.include_tasks: "k3s.yml"
