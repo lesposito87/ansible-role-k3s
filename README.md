@@ -17,6 +17,8 @@ Description: An Ansible Role that installs and configures a single node K3s clus
 
 
 
+
+
 ### Defaults
 
 **These are static variables with lower priority**
@@ -37,6 +39,13 @@ Description: An Ansible Role that installs and configures a single node K3s clus
 ### Tasks
 
 
+#### File: tasks/main.yml
+
+| Name | Module | Has Conditions |
+| ---- | ------ | --------- |
+| Wait for connection... |  | False |
+| Including K3s setup tasks | include_tasks | False |
+
 #### File: tasks/k3s.yml
 
 | Name | Module | Has Conditions |
@@ -50,16 +59,29 @@ Description: An Ansible Role that installs and configures a single node K3s clus
 | Replace server address in K3s kubeconfig with the instance ip | replace | False |
 | Copy kubeconfig file locally as "{{ k3s_kubeconfig_local_path }}" | ansible.builtin.fetch | False |
 
-#### File: tasks/main.yml
-
-| Name | Module | Has Conditions |
-| ---- | ------ | --------- |
-| Wait for connection... |  | False |
-| Including K3s setup tasks | include_tasks | False |
-
 
 ## Task Flow Graphs
 
+
+
+### Graph for main.yml
+
+```mermaid
+flowchart TD
+Start
+classDef block stroke:#3498db,stroke-width:2px;
+classDef task stroke:#4b76bb,stroke-width:2px;
+classDef includeTasks stroke:#16a085,stroke-width:2px;
+classDef importTasks stroke:#34495e,stroke-width:2px;
+classDef includeRole stroke:#2980b9,stroke-width:2px;
+classDef importRole stroke:#699ba7,stroke-width:2px;
+classDef includeVars stroke:#8e44ad,stroke-width:2px;
+classDef rescue stroke:#665352,stroke-width:2px;
+
+  Start-->|Task| Wait_for_connection___0[wait for connection   ]:::task
+  Wait_for_connection___0-->|Include task| k3s_yml1[including k3s setup tasks<br>include_task: k3s yml]:::includeTasks
+  k3s_yml1-->End
+```
 
 
 ### Graph for k3s.yml
@@ -88,26 +110,6 @@ classDef rescue stroke:#665352,stroke-width:2px;
 ```
 
 
-### Graph for main.yml
-
-```mermaid
-flowchart TD
-Start
-classDef block stroke:#3498db,stroke-width:2px;
-classDef task stroke:#4b76bb,stroke-width:2px;
-classDef includeTasks stroke:#16a085,stroke-width:2px;
-classDef importTasks stroke:#34495e,stroke-width:2px;
-classDef includeRole stroke:#2980b9,stroke-width:2px;
-classDef importRole stroke:#699ba7,stroke-width:2px;
-classDef includeVars stroke:#8e44ad,stroke-width:2px;
-classDef rescue stroke:#665352,stroke-width:2px;
-
-  Start-->|Task| Wait_for_connection___0[wait for connection   ]:::task
-  Wait_for_connection___0-->|Include task| k3s_yml1[including k3s setup tasks<br>include_task: k3s yml]:::includeTasks
-  k3s_yml1-->End
-```
-
-
 
 
 
@@ -126,4 +128,8 @@ MIT
 
 - **Amazon Linux**: ['2']
 
+
+#### Dependencies
+
+No dependencies specified.
 <!-- DOCSIBLE END -->
