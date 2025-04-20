@@ -39,13 +39,6 @@ Description: An Ansible Role that installs and configures a single node K3s clus
 ### Tasks
 
 
-#### File: tasks/main.yml
-
-| Name | Module | Has Conditions |
-| ---- | ------ | --------- |
-| Wait for connection... | ansible.builtin.wait_for_connection | False |
-| Including K3s setup tasks | ansible.builtin.include_tasks | False |
-
 #### File: tasks/k3s.yml
 
 | Name | Module | Has Conditions |
@@ -58,6 +51,13 @@ Description: An Ansible Role that installs and configures a single node K3s clus
 | Start & Enable k3s systemd service | ansible.builtin.systemd_service | False |
 | Replace server address in K3s kubeconfig with the instance ip | ansible.builtin.replace | False |
 | Copy kubeconfig file locally as "{{ k3s_kubeconfig_local_path }}" | ansible.builtin.fetch | False |
+
+#### File: tasks/main.yml
+
+| Name | Module | Has Conditions |
+| ---- | ------ | --------- |
+| Wait for connection... | ansible.builtin.wait_for_connection | False |
+| Including K3s setup tasks | ansible.builtin.include_tasks | False |
 
 
 ## Task Flow Graphs
