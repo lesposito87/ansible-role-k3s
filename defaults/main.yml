@@ -3,7 +3,7 @@
 # required: True
 k3s_install_options: "--disable traefik,servicelb,metrics-server --node-label=role=core"
 
-# title: Force K3s reconfiguration
+# title: Force K3s reconfiguration even if K3s was already initialized
 # required: True
 k3s_reconfigure: false
 
