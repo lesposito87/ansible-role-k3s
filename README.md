@@ -30,7 +30,7 @@ Description: An Ansible Role that installs and configures a single node K3s clus
 | [k3s_install_options](defaults/main.yml#L4)   | str   | `--disable traefik,servicelb,metrics-server --node-label=role=core` |    True  |  K3s install options |
 | [k3s_reconfigure](defaults/main.yml#L8)   | bool   | `False` |    True  |  Force K3s reconfiguration even if K3s was already initialized |
 | [k3s_kubeconfig_local_path](defaults/main.yml#L12)   | str   | `/tmp/k3s-kubeconfig` |    True  |  Local path on your machine where the kubeconfig file for connecting to the K3s cluster will be copied |
-| [k3s_kubeconfig_server](defaults/main.yml#L16)   | str   | `{{ ansible_host }}` |    True  |  IP address used to configure K3s kubeconfig. Defaults to the host the playbook is currently running on. |
+| [k3s_kubeconfig_server](defaults/main.yml#L16)   | str   | `{{ ansible_host }}` |    True  |  IP address used to configure K3s kubeconfig. Defaults to the host the playbook is currently running on |
 
 
 
