@@ -11,6 +11,6 @@ k3s_reconfigure: false
 # required: True
 k3s_kubeconfig_local_path: "/tmp/k3s-kubeconfig"
 
-# title: K3s IP Address; replace it with the IP Address of your K3s instance
+# title: IP address used to configure K3s kubeconfig. Defaults to the host the playbook is currently running on.
 # required: True
-k3s_kubeconfig_server: "127.0.0.1"
+k3s_kubeconfig_server: "{{ ansible_host }}"
