@@ -1,16 +1,20 @@
 ---
 # title: K3s install options
-# required: True
+# required: False
 k3s_install_options: "--disable traefik,servicelb,metrics-server --node-label=role=core"
 
 # title: Force K3s reconfiguration even if K3s was already initialized
-# required: True
+# required: False
 k3s_reconfigure: false
 
 # title: Local path on your machine where the kubeconfig file for connecting to the K3s cluster will be copied
-# required: True
+# required: False
 k3s_kubeconfig_local_path: "/tmp/k3s-kubeconfig"
 
 # title: IP address used to configure K3s kubeconfig. Defaults to the host the playbook is currently running on
-# required: True
+# required: False
 k3s_kubeconfig_server: "{{ ansible_host }}"
+
+# title: List of Insecure Container Registries to configure
+# required: False
+k3s_insecure_registries: []

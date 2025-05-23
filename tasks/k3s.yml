@@ -40,6 +40,15 @@
     curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="{{ k3s_install_options }}" sh -s -
   when: not k3s_stat.stat.exists or k3s_reconfigure
 
+- name: Create registries.yaml for insecure container registries
+  ansible.builtin.template:
+    src: registries.yaml.j2
+    dest: /etc/rancher/k3s/registries.yaml
+    owner: root
+    group: root
+    mode: '0644'
+  when: k3s_insecure_registries | length > 0
+
 - name: Start & Enable k3s systemd service
   ansible.builtin.systemd_service:
     name: k3s
