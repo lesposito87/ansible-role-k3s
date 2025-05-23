@@ -48,6 +48,7 @@
     group: root
     mode: '0644'
   when: k3s_insecure_registries | length > 0
+  notify: k3s_restart
 
 - name: Start & Enable k3s systemd service
   ansible.builtin.systemd_service:
