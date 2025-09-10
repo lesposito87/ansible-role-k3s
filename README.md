@@ -66,6 +66,26 @@ Description: An Ansible Role that installs and configures a single node K3s clus
 
 
 
+### Graph for main.yml
+
+```mermaid
+flowchart TD
+Start
+classDef block stroke:#3498db,stroke-width:2px;
+classDef task stroke:#4b76bb,stroke-width:2px;
+classDef includeTasks stroke:#16a085,stroke-width:2px;
+classDef importTasks stroke:#34495e,stroke-width:2px;
+classDef includeRole stroke:#2980b9,stroke-width:2px;
+classDef importRole stroke:#699ba7,stroke-width:2px;
+classDef includeVars stroke:#8e44ad,stroke-width:2px;
+classDef rescue stroke:#665352,stroke-width:2px;
+
+  Start-->|Task| Wait_for_connection___0[wait for connection   ]:::task
+  Wait_for_connection___0-->|Include task| Including_K3s_setup_tasks_k3s_yml_1[including k3s setup tasks<br>include_task: k3s yml]:::includeTasks
+  Including_K3s_setup_tasks_k3s_yml_1-->End
+```
+
+
 ### Graph for k3s.yml
 
 ```mermaid
@@ -90,26 +110,6 @@ classDef rescue stroke:#665352,stroke-width:2px;
   Start___Enable_k3s_systemd_service6-->|Task| Replace_server_address_in_K3s_kubeconfig_with_the_instance_ip7[replace server address in k3s kubeconfig with the<br>instance ip]:::task
   Replace_server_address_in_K3s_kubeconfig_with_the_instance_ip7-->|Task| Copy_kubeconfig_file_locally_as__k3s_kubeconfig_local_path_8[copy kubeconfig file locally as  k3s kubeconfig<br>local path ]:::task
   Copy_kubeconfig_file_locally_as__k3s_kubeconfig_local_path_8-->End
-```
-
-
-### Graph for main.yml
-
-```mermaid
-flowchart TD
-Start
-classDef block stroke:#3498db,stroke-width:2px;
-classDef task stroke:#4b76bb,stroke-width:2px;
-classDef includeTasks stroke:#16a085,stroke-width:2px;
-classDef importTasks stroke:#34495e,stroke-width:2px;
-classDef includeRole stroke:#2980b9,stroke-width:2px;
-classDef importRole stroke:#699ba7,stroke-width:2px;
-classDef includeVars stroke:#8e44ad,stroke-width:2px;
-classDef rescue stroke:#665352,stroke-width:2px;
-
-  Start-->|Task| Wait_for_connection___0[wait for connection   ]:::task
-  Wait_for_connection___0-->|Include task| Including_K3s_setup_tasks_k3s_yml_1[including k3s setup tasks<br>include_task: k3s yml]:::includeTasks
-  Including_K3s_setup_tasks_k3s_yml_1-->End
 ```
 
 
