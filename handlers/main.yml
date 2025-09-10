@@ -1,4 +1,4 @@
-- name: k3s_restart
+- name: K3s_restart
   ansible.builtin.systemd:
     name: k3s
     state: restarted
